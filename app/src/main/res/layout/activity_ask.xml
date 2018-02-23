@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ilkom.biner.biner.AskActivity"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/editPertanyaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Pertanyaan"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:textSize="29sp"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnTanya"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanya"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="89dp"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/textJawaban"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="29sp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="214dp" />
+</LinearLayout>
