@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Ardiansyah\Desktop\BINER2\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\Ardiansyah\Desktop\BINER2\app\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="G:\Android\biner3.0\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="G:\Android\biner3.0\app\src\debug\shaders"/></dataSet></merger>

@@ -1,4 +1,4 @@
-#Sat Feb 24 00:58:21 ICT 2018
-base.0=C\:\\Users\\Ardiansyah\\Desktop\\BINER2\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Sun Feb 25 01:23:57 ICT 2018
+base.0=G\:\\Android\\biner3.0\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
