@@ -42,6 +42,7 @@ public class AskActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         jawabanNya = findViewById(R.id.textJawaban);
         pertanyaan = findViewById(R.id.editPertanyaan);
         btnJawaban = findViewById(R.id.btnTanya);
@@ -79,25 +80,30 @@ public class AskActivity extends AppCompatActivity {
     }
 
     private void loadData() throws Exception {
+        //  checking SD Card availability
         boolean sdCardAvailable = isSdCardAvailable();
 
+        //  receiving the assets from the app directory
         AssetManager assetManager = getResources().getAssets();
-        File dir = new File(Environment.getExternalStorageDirectory().toString()+"/chatbot/biner3");
+        File dir = new File(Environment.getExternalStorageDirectory().toString() + "/chatbot/bots/biner3");
         boolean makeDir = dir.mkdirs();
-        if (dir.exists()){
+        if (dir.exists()) {
+            //  reading the file assets
             try {
-                for (String fileAsset : assetManager.list("chatbot")){
-                    File subdir = new File(dir.getPath()+"/"+fileAsset);
+                for (String fileAsset : assetManager.list("chatbot")) {
+                    File subdir = new File(dir.getPath() + "/" + fileAsset);
                     boolean subdirCheck = subdir.mkdirs();
-                    for (String file : assetManager.list("chatbot/"+fileAsset)){
-                        File f = new File(dir.getPath()+"/"+fileAsset+"/"+file);
-                        if(f.exists())
+                    for (String file : assetManager.list("chatbot/" + fileAsset)) {
+                        File f = new File(dir.getPath() + "/" + fileAsset + "/" + file);
+                        if (f.exists()) {
                             continue;
+                        }
                         InputStream in = null;
                         OutputStream out = null;
-                        in = assetManager.open("chatbot/"+fileAsset+"/"+file);
-                        out = new FileOutputStream(dir.getPath()+"/"+fileAsset+"/"+file);
+                        in = assetManager.open("chatbot/" + fileAsset + "/" + file);
+                        out = new FileOutputStream(dir.getPath() + "/" + fileAsset + "/" + file);
 
+                        //  copy file from assets to the mobile SD card or any secondary memory
                         copyFile(in, out);
                         in.close();
                         in = null;
@@ -106,15 +112,17 @@ public class AskActivity extends AppCompatActivity {
                         out = null;
                     }
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        MagicStrings.root_path = Environment.getExternalStorageState().toString()+"/chatbot";
-        System.out.println("working directore: "+MagicStrings.root_path);
+        //  get the working directory
+        MagicStrings.root_path = Environment.getExternalStorageDirectory().toString() + "/chatbot";
+        System.out.println("working directory: " + MagicStrings.root_path);
         AIMLProcessor.extension = new PCAIMLProcessorExtension();
 
+        //  assign the AIML files to bot for processing
         bot = new Bot("biner3", MagicStrings.root_path, "chat");
         chat = new Chat(bot);
 
@@ -125,7 +133,7 @@ public class AskActivity extends AppCompatActivity {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? true : false;
     }
 
-    private void copyFile(InputStream in, OutputStream out) throws Exception{
+    private void copyFile(InputStream in, OutputStream out) throws IOException{
         byte[] buffer = new byte[1024];
         int read;
         while ((read = in.read(buffer))!=-1){
