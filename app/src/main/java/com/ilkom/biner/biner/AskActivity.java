@@ -3,7 +3,6 @@ package com.ilkom.biner.biner;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -68,8 +67,9 @@ public class AskActivity extends AppCompatActivity {
 //                    Toast.makeText(AskActivity.this, "Pertanyaan tidak tersedia", Toast.LENGTH_SHORT).show();
 //                }
                 if (pertanyaanNya.isEmpty()){
-                    jawabanNya.setText("");
-                    Toast.makeText(AskActivity.this, "ketikan halo", Toast.LENGTH_SHORT).show();
+                    String botResponse = chat.multisentenceRespond("hello");
+                    jawabanNya.setText(botResponse);
+                    //Toast.makeText(AskActivity.this, "ketikan halo", Toast.LENGTH_SHORT).show();
                 } else {
                     String botResponse = chat.multisentenceRespond(pertanyaanNya);
                     jawabanNya.setText(botResponse);
@@ -82,7 +82,7 @@ public class AskActivity extends AppCompatActivity {
         boolean sdCardAvailable = isSdCardAvailable();
 
         AssetManager assetManager = getResources().getAssets();
-        File dir = new File(Environment.getExternalStorageDirectory().toString()+"/chat/bots/biner3.0");
+        File dir = new File(Environment.getExternalStorageDirectory().toString()+"/chatbot/biner3");
         boolean makeDir = dir.mkdirs();
         if (dir.exists()){
             try {
@@ -115,7 +115,7 @@ public class AskActivity extends AppCompatActivity {
         System.out.println("working directore: "+MagicStrings.root_path);
         AIMLProcessor.extension = new PCAIMLProcessorExtension();
 
-        bot = new Bot("biner3.0", MagicStrings.root_path, "chat");
+        bot = new Bot("biner3", MagicStrings.root_path, "chat");
         chat = new Chat(bot);
 
 
