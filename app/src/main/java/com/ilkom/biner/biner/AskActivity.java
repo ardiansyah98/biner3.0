@@ -53,8 +53,8 @@ public class AskActivity extends AppCompatActivity {
         btnJawaban.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String pertanyaanNya = pertanyaan.getText().toString().trim().toLowerCase();
-                String pertanyaanNya = pertanyaan.getText().toString();
+                String pertanyaanNya = pertanyaan.getText().toString().trim().toLowerCase();
+                //String pertanyaanNya = pertanyaan.getText().toString();
 
 //                if (pertanyaanNya.equals("berapa umur anda?")){
 //                    jawabanNya.setText("umur saya "+umurPeople+" tahun");
@@ -80,15 +80,15 @@ public class AskActivity extends AppCompatActivity {
     }
 
     private void loadData() throws Exception {
-        //  checking SD Card availability
+
         boolean sdCardAvailable = isSdCardAvailable();
 
-        //  receiving the assets from the app directory
+
         AssetManager assetManager = getResources().getAssets();
         File dir = new File(Environment.getExternalStorageDirectory().toString() + "/chatbot/bots/biner3");
         boolean makeDir = dir.mkdirs();
         if (dir.exists()) {
-            //  reading the file assets
+
             try {
                 for (String fileAsset : assetManager.list("chatbot")) {
                     File subdir = new File(dir.getPath() + "/" + fileAsset);
@@ -103,7 +103,7 @@ public class AskActivity extends AppCompatActivity {
                         in = assetManager.open("chatbot/" + fileAsset + "/" + file);
                         out = new FileOutputStream(dir.getPath() + "/" + fileAsset + "/" + file);
 
-                        //  copy file from assets to the mobile SD card or any secondary memory
+
                         copyFile(in, out);
                         in.close();
                         in = null;
@@ -117,12 +117,12 @@ public class AskActivity extends AppCompatActivity {
             }
         }
 
-        //  get the working directory
+
         MagicStrings.root_path = Environment.getExternalStorageDirectory().toString() + "/chatbot";
         System.out.println("working directory: " + MagicStrings.root_path);
         AIMLProcessor.extension = new PCAIMLProcessorExtension();
 
-        //  assign the AIML files to bot for processing
+
         bot = new Bot("biner3", MagicStrings.root_path, "chat");
         chat = new Chat(bot);
 
@@ -136,7 +136,7 @@ public class AskActivity extends AppCompatActivity {
     private void copyFile(InputStream in, OutputStream out) throws IOException{
         byte[] buffer = new byte[1024];
         int read;
-        while ((read = in.read(buffer))!=-1){
+        while ((read = in.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
     }
